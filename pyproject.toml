@@ -1,0 +1,23 @@
+[project]
+name = "stormcatchments"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "geopandas",
+    "networkx",
+    "numpy",
+    "pandas",
+    "pysheds",
+    "rasterio",
+    "shapely",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[tool.uv.sources]
+pysheds = { git = "https://github.com/jojo0094/pysheds.git" }

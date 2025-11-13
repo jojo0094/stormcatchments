@@ -445,7 +445,7 @@ class Network:
             catchment = catchment.to_crs(crs=self.pts.crs)
 
         catchment_pts = gpd.clip(self.pts, catchment)
-        sink_pts = catchment_pts[catchment_pts["IS_SINK"] is True]
+        sink_pts = catchment_pts[catchment_pts["IS_SINK"] == True]
 
         indicies_to_remove = []
         sink_pt_inidicies = sink_pts.index.to_list()
@@ -481,7 +481,7 @@ class Network:
             catchment = catchment.to_crs(crs=self.pts.crs)
 
         catchment_pts = gpd.clip(self.pts, catchment)
-        source_pts = catchment_pts[catchment_pts["IS_SOURCE"] is True]
+        source_pts = catchment_pts[catchment_pts["IS_SOURCE"] == True]
         source_pt_geoms = source_pts.geometry.tolist()
         source_pt_coords = [get_point_coords(geom) for geom in source_pt_geoms]
 
@@ -576,9 +576,9 @@ class Network:
             pts = self.pts
 
         # Plot points
-        sink_pts = pts[pts["IS_SINK"] is True]
-        source_pts = pts[pts["IS_SOURCE"] is True]
-        other_pts = pts[(pts["IS_SINK"] is False) & (pts["IS_SOURCE"] is False)]
+        sink_pts = pts[pts["IS_SINK"] == True]
+        source_pts = pts[pts["IS_SOURCE"] == True]
+        other_pts = pts[(pts["IS_SINK"] == False) & (pts["IS_SOURCE"] == False)]
         sink_pts.plot(
             ax=ax, color="white", marker="s", edgecolor="black", markersize=10, zorder=2
         )
