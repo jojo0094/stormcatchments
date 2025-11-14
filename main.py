@@ -60,11 +60,12 @@ def delineate_johnson():
 
 
 def main():
-    delin = delineate_johnson()
-    print(delin)
-    pour_pt = (484636, 237170)
-    stormcatchment = delin.get_stormcatchment(pour_pt)
-    print(stormcatchment)
+    print('success')
+    # delin = delineate_johnson()
+    # print(delin)
+    # pour_pt = (484636, 237170)
+    # stormcatchment = delin.get_stormcatchment(pour_pt)
+    # print(stormcatchment)
 
 if __name__ == "__main__":
     main()

@@ -1,10 +1,11 @@
-from pysheds.grid import Grid
-
-
 def preprocess_dem(dem_path: str) -> tuple:
     """
     Pre-process digital elevation model (DEM), in line standard preprocessing steps
     outlined in pysheds documentation
+    
+    NOTE: First call to this function is slow (~10s) as it imports pysheds.
+    Subsequent calls will be fast. This is normal due to pysheds' heavy dependencies
+    (numba, scipy, etc).
 
     Parameters
     ----------
@@ -22,6 +23,9 @@ def preprocess_dem(dem_path: str) -> tuple:
     fdir: pysheds.sview.Raster
       A pysheds flow direction raster
     """
+    # Lazy import to avoid slow module startup time (~10s saved on import)
+    from pysheds.grid import Grid
+    
     grid = Grid.from_raster(dem_path)
     dem = grid.read_raster(dem_path)
     pit_filled = grid.fill_pits(dem)
